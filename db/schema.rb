@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124122316) do
+ActiveRecord::Schema.define(version: 20141201101156) do
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", force: true do |t|
+    t.integer  "Product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "line_items", ["Product_id"], name: "index_line_items_on_Product_id"
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
 
   create_table "products", force: true do |t|
     t.string   "title"
